@@ -4,7 +4,8 @@ Este projeto tem como objetivo aplicar a técnica de análise de cohort para ent
 ❓ O que é Análise de Cohort?
 A análise de cohort agrupa clientes com base em um ponto comum no tempo — geralmente a primeira compra — e acompanha sua atividade em períodos subsequentes. Isso permite identificar padrões de retenção e engajamento ao longo do tempo.
 
-🛠️ Ferramentas Utilizadas
+Ferramentas Utilizadas:
+
 Microsoft Excel
 
 Power Query
