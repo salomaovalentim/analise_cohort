@@ -1,33 +1,52 @@
- Análise de Cohort com Excel
-Este projeto tem como objetivo aplicar a técnica de análise de cohort para entender o comportamento de retenção de clientes ao longo do tempo, utilizando exclusivamente ferramentas do Excel, como Power Query e Tabelas Dinâmicas.
+# Análise de Cohort de Retenção de Clientes | Excel + Power Query
 
- O que é Análise de Cohort?
-A análise de cohort agrupa clientes com base em um ponto comum no tempo — geralmente a primeira compra — e acompanha sua atividade em períodos subsequentes. Isso permite identificar padrões de retenção e engajamento ao longo do tempo.
+Projeto pessoal. Mede **quantos clientes voltam a comprar** nos meses seguintes à primeira compra, agrupando-os pelo mês de aquisição (cohort). Feito só com Excel, Power Query e Tabelas Dinâmicas.
 
-Ferramentas Utilizadas:
+## Pergunta de negócio
 
-Microsoft Excel
+> Os clientes voltam a comprar depois da primeira compra? Em quanto tempo? Algum período de aquisição trouxe clientes mais fiéis?
 
-Power Query
+## Dados
 
-Tabelas Dinâmicas
+- Base pública **Sample Superstore** (varejo fictício dos EUA), 9.994 linhas de itens de pedido, **793 clientes**, pedidos de jan/2014 a dez/2017.
+- Abas: `orders`, `customers`, `product`, `location` (originais) → `TABELA TOTAL` (unificada no Power Query) → `cohort` (cálculo e matriz).
 
- Etapas do Projeto
-Importação e tratamento dos dados com Power Query
+## Método
 
-Criação de colunas auxiliares para identificar o mês da primeira compra
+1. Power Query: tipagem das datas e junção de pedidos com clientes e produtos.
+2. **Mês de aquisição** = mês da primeira compra do cliente.
+3. **Mês decorrido** = diferença em meses entre cada compra e o mês de aquisição.
+4. Tabela Dinâmica com **contagem distinta de clientes** por cohort × mês decorrido, mostrada como % do mês 0 (taxa de retenção).
+5. Formatação condicional como heatmap.
 
-Agrupamento dos clientes por cohort (primeiro mês de compra)
+## Resultados
 
-Análise da retenção mensal usando Tabela Dinâmica
+| Indicador | Valor |
+|---|---|
+| Retenção média no mês seguinte (M+1) | 6,2% (mediana 2,1%) |
+| Retenção média em M+3 | 9,2% |
+| Retenção média em M+6 | 8,9% |
+| Retenção média em M+12 | 13,6% |
+| Clientes que compraram de novo em algum momento | 98% |
+| Clientes adquiridos em 2014 | 595 de 793 (75%) |
 
-Visualização dos dados com gráficos de calor (heatmap)
+Leitura:
 
+- A recompra é **pouco frequente mês a mês, mas quase universal no longo prazo**: em um mês específico poucos clientes voltam, porém praticamente todos voltam em algum momento do período.
+- A retenção em M+12 é maior que em M+1, sugerindo **ciclo de recompra anual/sazonal** (compras de fim de ano, reposição periódica), e não abandono.
+- 75% da base foi adquirida em 2014; os cohorts de 2016–2017 têm poucos clientes (51 e 11), então suas taxas são instáveis e não devem ser comparadas diretamente com as de 2014.
 
-Objetivos
+## Recomendações (hipóteses)
 
-Identificar padrões de retenção de clientes
+- Medir retenção também por **trimestre** para suavizar a sazonalidade.
+- Testar campanhas de reativação alinhadas ao ciclo de ~12 meses observado.
+- Com mais tempo de dados novos, comparar cohorts recentes com os antigos para avaliar a qualidade da aquisição.
 
-Avaliar o desempenho das estratégias de aquisição
+## Limitações
 
-Gerar insights para ações de fidelização e relacionamento
+- Base fictícia; sem dados de marketing, então não é possível atribuir causa às variações entre cohorts.
+- Cohorts recentes têm menos meses observados (corte em dez/2017).
+
+## Ferramentas
+
+Excel · Power Query · Tabelas Dinâmicas · Formatação condicional
